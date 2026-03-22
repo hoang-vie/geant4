@@ -1,0 +1,2 @@
+# Giả sử nguồn hoạt độ 1000 Bq, muốn đo trong 5 giây => Bắn 5000 hạt
+/run/beamOn 5000

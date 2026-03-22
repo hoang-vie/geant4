@@ -1,0 +1,17 @@
+# BẮT BUỘC: Khởi tạo hạt nhân Geant4 (Xây dựng hình học và vật lý) TRƯỚC KHI vẽ
+/run/initialize
+
+/vis/open OGL
+/vis/drawVolume
+/vis/scene/add/trajectories smooth
+/vis/scene/endOfEventAction accumulate
+
+# Phân màu từng loại hạt
+/vis/modeling/trajectories/create/drawByParticleID
+/vis/modeling/trajectories/drawByParticleID-0/set gamma green
+/vis/modeling/trajectories/drawByParticleID-0/set e- red
+/vis/modeling/trajectories/drawByParticleID-0/set alpha yellow
+/vis/modeling/trajectories/drawByParticleID-0/set neutron blue
+
+/vis/geometry/set/visibility World 0 false
+/vis/viewer/set/viewpointThetaPhi 120 150

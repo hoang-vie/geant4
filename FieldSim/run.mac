@@ -1,0 +1,20 @@
+/run/initialize
+/vis/viewer/clear
+
+# ===============================================
+# CÀI ĐẶT ĐỘ MẠNH ĐIỆN TRƯỜNG VÀ TỪ TRƯỜNG
+# ===============================================
+/field/magValue 0.1 tesla # ĐỘ MẠNH TỪ TRƯỜNG
+/field/elecValue 200    # ĐỘ MẠNH ĐIỆN TRƯỜNG
+/field/update
+
+
+# 1. Từ trường (Trục Y)
+/vis/scene/add/arrow 0 0 0  0 80 0 cm
+/vis/scene/add/text 0 85 0 cm 24 0 0 B-Field
+
+# 2. Điện trường (Trục X)
+/vis/scene/add/arrow 0 0 0  80 0 0 cm
+/vis/scene/add/text 85 0 0 cm 24 0 0 E-Field
+
+/run/beamOn 3

@@ -1,0 +1,21 @@
+/run/initialize
+
+# Ép phân rã
+/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year
+
+# Cấu hình nguồn Cs-137
+/gps/pos/type Point
+/gps/pos/centre 0 0 0 cm
+/gps/ang/type iso
+/gps/particle ion
+/gps/ion 55 137 0 0 # Cs 137
+#/gps/ion 38 90 0 0  #Strontium-90 (Sr-90) 
+#/gps/ion 92 238 0 0  #Uranium-238 (U-238) 
+#/gps/ion 95 241 0 0  #Americium-241
+#/gps/ion 27 60 0 0 #Cobalt-60 (Co-60)
+
+/gps/energy 1 eV 
+
+# Đặt khoảng cách và Lặp tự động 500 vòng
+/geom/setDetDistance 10 cm
+/control/loop run_single.mac i 1 500
