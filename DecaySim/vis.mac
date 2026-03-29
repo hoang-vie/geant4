@@ -18,6 +18,8 @@
 /vis/modeling/trajectories/drawByParticleID-0/set e- red
 /vis/modeling/trajectories/drawByParticleID-0/set alpha yellow
 
+
+
 # -------------------------------------------------------------------
 # ÉP PHÂN RÃ VÀ CẤU HÌNH NGUỒN
 # -------------------------------------------------------------------
@@ -29,9 +31,14 @@
 /gps/pos/centre 0 0 0 cm
 /gps/ang/type iso
 /gps/particle ion
-/gps/ion 55 137 0 0
-
+#/gps/ion 27 60 0 0 
+/gps/ion 92 238 0 0
+#/gps/ion 88 226 0 0 #Radi
+#/gps/ion 90 232 0 0 #Thori
+#/gps/ion 55 137 0 0
+#/gps/ion 11 22 0 0 #Sodium 22 => will see pair production
+#/gps/ion 4 7 0 0 # Li test 
 #Cho động năng cực nhỏ (1 eV) để hệ thống nhận diện
 /gps/energy 1 eV 
 
-/run/beamOn 50
+/run/beamOn 1

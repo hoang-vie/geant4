@@ -28,10 +28,11 @@ G4VPhysicalVolume* DetectorConstruction::Construct() {
     logicWorld->SetVisAttributes(G4VisAttributes::GetInvisible());
 
     // Nguồn phóng xạ: Hình cầu bán kính 5mm tại gốc tọa độ
-    auto solidSource = new G4Orb("Source", 5*mm);
+    auto solidSource = new G4Orb("Source", 2*mm);
     auto logicSource = new G4LogicalVolume(solidSource, air, "Source");
     new G4PVPlacement(nullptr, G4ThreeVector(0,0,0), logicSource, "Source", logicWorld, false, 0, true);
     logicSource->SetVisAttributes(new G4VisAttributes(G4Colour(1.0, 1.0, 0.0))); 
+    
     
     // Detector: 10x10 cm, dày 1mm
     auto solidDet = new G4Box("Detector", 5*cm, 5*cm, 0.5*mm);

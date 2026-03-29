@@ -4,7 +4,12 @@
 #include "G4UIExecutive.hh"
 
 #include "QGSP_BIC_HP.hh"
-#include "G4RadioactiveDecayPhysics.hh" // Thư viện lõi cho phân rã
+#include "G4RadioactiveDecayPhysics.hh" 
+
+// 3 THƯ VIỆN ĐỂ CAN THIỆP LÕI VẬT LÝ
+#include "G4EmParameters.hh"
+#include "G4NuclearLevelData.hh"
+#include "G4DeexPrecoParameters.hh"
 
 #include "ActionInitialization.hh"
 #include "DetectorConstruction.hh"
@@ -15,14 +20,27 @@ int main(int argc, char** argv) {
 
     G4Random::setTheEngine(new CLHEP::RanecuEngine);
     G4Random::setTheSeed(time(nullptr));
-    //auto runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
     auto runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Serial);
 
     runManager->SetUserInitialization(new DetectorConstruction());
 
     auto physicsList = new QGSP_BIC_HP();
-    physicsList->RegisterPhysics(new G4RadioactiveDecayPhysics()); // Đăng ký vật lý phóng xạ
+    physicsList->RegisterPhysics(new G4RadioactiveDecayPhysics());
     runManager->SetUserInitialization(physicsList);
+
+    // ====================================================================
+    // ÉP GEANT4 CHỈ MÔ PHỎNG HẠT NHÂN (TẮT LỚP VỎ NGUYÊN TỬ)
+    // ====================================================================
+    // 1. Tắt Auger Electron, Tia X huỳnh quang của lớp vỏ
+    G4EmParameters* emParams = G4EmParameters::Instance();
+    emParams->SetAuger(false);
+    emParams->SetFluo(false);
+    emParams->SetPixe(false);
+
+    // 2. Tắt Internal Conversion (Cấm hạt nhân đá electron vỏ ra ngoài)
+    G4DeexPrecoParameters* deexParams = G4NuclearLevelData::GetInstance()->GetParameters();
+    deexParams->SetInternalConversionFlag(false);
+    // ====================================================================
 
     runManager->SetUserInitialization(new ActionInitialization());
 
