@@ -17,7 +17,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event) {
     G4ParticleDefinition* electron = particleTable->FindParticle("e-");
     G4ParticleDefinition* gamma = particleTable->FindParticle("gamma");
 
-    G4double z0 = -1.0 * m; // Bắn từ đầu mút của không gian
+    G4double z0 = -2.0 * m; // Bắn từ đầu mút của không gian
     G4double energy = 10.0 * MeV; // Năng lượng khá lớn để hạt bay xa
     fParticleGun->SetParticleEnergy(energy);
 

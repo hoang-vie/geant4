@@ -8,10 +8,14 @@
 #include <ctime>        
 
 
+
 #include "ActionInitialization.hh"
 #include "DetectorConstruction.hh"
 
 int main(int argc, char** argv) {
+    
+    G4Random::setTheEngine(new CLHEP::RanecuEngine);
+    G4Random::setTheSeed(time(nullptr));
     auto runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
 
     G4Random::setTheEngine(new CLHEP::RanecuEngine);

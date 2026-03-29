@@ -6,9 +6,13 @@
 
 #include "ActionInitialization.hh"
 #include "DetectorConstruction.hh"
+#include "Randomize.hh"
+#include <ctime>
 
 int main(int argc, char** argv) {
     // Chạy chế độ Serial (Đơn luồng) để quản lý bộ nhớ Field và ROOT File tốt nhất
+    G4Random::setTheEngine(new CLHEP::RanecuEngine);
+    G4Random::setTheSeed(time(nullptr));
     auto runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Serial);
 
     runManager->SetUserInitialization(new DetectorConstruction());
