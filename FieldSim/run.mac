@@ -4,7 +4,7 @@
 # ===============================================
 # CÀI ĐẶT ĐỘ MẠNH ĐIỆN TRƯỜNG VÀ TỪ TRƯỜNG
 # ===============================================
-/field/magValue 0.1 tesla # ĐỘ MẠNH TỪ TRƯỜNG
+/field/magValue 0.5 tesla # ĐỘ MẠNH TỪ TRƯỜNG
 /field/elecValue 200    # ĐỘ MẠNH ĐIỆN TRƯỜNG
 /field/update
 

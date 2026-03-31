@@ -38,5 +38,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         analysisManager->FillNtupleDColumn(2, step->GetPreStepPoint()->GetPosition().x() / cm);
         analysisManager->FillNtupleDColumn(3, step->GetPreStepPoint()->GetPosition().y() / cm);
         analysisManager->AddNtupleRow();
+
+        std::cout <<  " Hạt " << particleName << " vừa đâm vào máy dò với năng lượng = " << step->GetPreStepPoint()->GetKineticEnergy() << " MeV \n" ;
     }
 }

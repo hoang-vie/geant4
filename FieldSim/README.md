@@ -13,5 +13,5 @@ Màu Vàng (Yellow): Hạt Alpha.
 Để thay đổi độ mạnh yếu điện từ trường ảnh hưởng lên hạt:
     1. Vào file run.mac trong build hoặc run.mac ở ngoài ( nhưng phải make lại trong build sau khi sửa)
     Sưa giá trị ở:
-         /field/magValue 0.1 tesla # ĐỘ MẠNH TỪ TRƯỜNG
+         /field/magValue 0.5 tesla # ĐỘ MẠNH TỪ TRƯỜNG
          /field/elecValue 200    # ĐỘ MẠNH ĐIỆN TRƯỜNG

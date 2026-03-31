@@ -11,7 +11,7 @@
 
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(), fLogicShield(nullptr), fLogicDetector(nullptr), fSolidShield(nullptr), 
-  fShieldMatName("G4_Pb"), fShieldThickness(1.0*cm), fGunZPos(-5.0*cm), fGunEnergy(5.0*MeV) {
+  fShieldMatName("G4_AIR"), fShieldThickness(1.0*cm), fGunZPos(-5.0*cm), fGunEnergy(5.0*MeV) {
     
     fMessenger = new G4GenericMessenger(this, "/shield/", "Control shielding geometry");
     fMessenger->DeclareMethod("setMaterial", &DetectorConstruction::SetMaterial, "Change shielding material");
