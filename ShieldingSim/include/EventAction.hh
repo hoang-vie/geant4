@@ -9,15 +9,15 @@ class RunAction;
 class EventAction : public G4UserEventAction {
 public:
     EventAction(RunAction* runAction);
-    ~EventAction() override = default;
+    virtual ~EventAction() {}
 
-    void BeginOfEventAction(const G4Event* event) override;
-    void EndOfEventAction(const G4Event* event) override;
-
+    virtual void BeginOfEventAction(const G4Event* event);
+    virtual void EndOfEventAction(const G4Event* event);
     void AddDetected(const G4String& type);
 
 private:
     RunAction* fRunAction;
-    G4int fDetAlpha, fDetBeta, fDetGamma, fDetNeutron;
+    G4int fDetAlpha, fDetElectron, fDetPositron, fDetGamma, fDetNeutron; // Phải có fDetElectron, fDetPositron
 };
+
 #endif

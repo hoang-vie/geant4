@@ -15,6 +15,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event) {
     auto particleTable = G4ParticleTable::GetParticleTable();
     G4ParticleDefinition* alpha = particleTable->FindParticle("alpha");
     G4ParticleDefinition* electron = particleTable->FindParticle("e-");
+    G4ParticleDefinition* antielectron = particleTable->FindParticle("e+");
     G4ParticleDefinition* gamma = particleTable->FindParticle("gamma");
 
     G4double z0 = -2.0 * m; // Bắn từ đầu mút của không gian
@@ -27,6 +28,10 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event) {
     fParticleGun->GeneratePrimaryVertex(event);
 
     fParticleGun->SetParticleDefinition(electron);
+    fParticleGun->SetParticlePosition(G4ThreeVector(0., 0., z0));
+    fParticleGun->GeneratePrimaryVertex(event);
+
+    fParticleGun->SetParticleDefinition(antielectron);
     fParticleGun->SetParticlePosition(G4ThreeVector(0., 0., z0));
     fParticleGun->GeneratePrimaryVertex(event);
 

@@ -3,6 +3,7 @@
 /vis/open OGL
 /vis/drawVolume
 
+
 /vis/viewer/set/background black
 /vis/viewer/set/lightsMove cam
 /vis/viewer/set/viewpointThetaPhi 60 45
@@ -13,31 +14,49 @@
 /vis/scene/add/trajectories smooth
 /vis/scene/endOfEventAction accumulate 100
 
+
+#Thiết lập màu cho tia phát để nhận diện
 /vis/modeling/trajectories/create/drawByParticleID
 /vis/modeling/trajectories/drawByParticleID-0/set gamma green
 /vis/modeling/trajectories/drawByParticleID-0/set e- red
+/vis/modeling/trajectories/drawByParticleID-0/set e+ magenta
 /vis/modeling/trajectories/drawByParticleID-0/set alpha yellow
+/vis/modeling/trajectories/drawByParticleID-0/set anti_nu_e gray
+/vis/modeling/trajectories/drawByParticleID-0/set nu_e orange
 
 
-
+# -------------------------------------------------------------------
 # -------------------------------------------------------------------
 # ÉP PHÂN RÃ VÀ CẤU HÌNH NGUỒN
+# 1. Ép các hạt có chu kỳ bán rã cực dài PHẢI phân rã
 # -------------------------------------------------------------------
-# 1. Ép các hạt có chu kỳ bán rã cực dài (như Cs-137) PHẢI phân rã
+# -------------------------------------------------------------------
 /process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year
 
-# 2. Đặt nguồn
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+#Thiết lập nguồn
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
 /gps/pos/type Point
-/gps/pos/centre 0 0 0 cm
+/gps/pos/centre 0 0 0 cm #Vị trí nguồn
 /gps/ang/type iso
 /gps/particle ion
-#/gps/ion 27 60 0 0 
-/gps/ion 92 238 0 0
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+#Khai báo nguồn
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+#/gps/ion 6 11 0 0 #Carbon 11
+#/gps/ion 27 60 0 0 #Co
+/gps/ion 92 238 0 0 #Uranium
 #/gps/ion 88 226 0 0 #Radi
-#/gps/ion 90 232 0 0 #Thori
-#/gps/ion 55 137 0 0
-#/gps/ion 11 22 0 0 #Sodium 22 => will see pair production
-#/gps/ion 4 7 0 0 # Li test 
+#/gps/ion 54 118 0 0 #Thori
+#/gps/ion 55 137 0 0 ##Cs
+#/gps/ion 11 22 0 0 #Sodium 22 
+#/gps/ion 4 7 0 0 # Li 
+#/gps/ion 84 210 0 0 #Po
+#/gps/ion 9 18 0 0 #Flo
 #Cho động năng cực nhỏ (1 eV) để hệ thống nhận diện
 /gps/energy 1 eV 
 

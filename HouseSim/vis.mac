@@ -1,0 +1,63 @@
+# 1. Khởi tạo hệ thống
+/run/initialize
+
+# 2. Thiết lập cửa sổ đồ họa
+/vis/open OGL
+/vis/drawVolume
+/vis/viewer/set/autoRefresh true
+
+# 3. Chế độ quan sát (Wireframe giúp nhìn xuyên thấu tường 10cm chì)
+/vis/viewer/set/style wireframe
+/vis/viewer/set/hiddenEdge true
+/vis/viewer/set/auxiliaryEdge true
+
+# 4. Làm nét ngôi nhà và thiết lập hiển thị
+/vis/geometry/set/lineWidth Wall 0 2.5
+/vis/geometry/set/lineWidth Roof 0 2.5
+/vis/geometry/set/colour Wall 0 0.6 0.6 0.6 0.3
+/vis/geometry/set/colour Roof 0 0.8 0.1 0.1 0.3
+/vis/geometry/set/visibility World 0 false
+
+# 5. Thiết lập quỹ đạo hạt (Định nghĩa màu sắc theo ID hạt)
+/vis/scene/add/trajectories smooth
+/vis/modeling/trajectories/create/drawByParticleID
+
+# Phân bổ màu sắc:
+/vis/modeling/trajectories/drawByParticleID-0/set gamma blue
+/vis/modeling/trajectories/drawByParticleID-0/set e- red
+/vis/modeling/trajectories/drawByParticleID-0/set e+ green
+/vis/modeling/trajectories/drawByParticleID-0/set alpha yellow
+
+# Tăng độ hiển thị cho quỹ đạo
+/vis/modeling/trajectories/drawByParticleID-0/default/setLineWidth 2.0
+/vis/scene/endOfEventAction accumulate 1000
+
+# 6. Cấu hình Camera
+/vis/viewer/set/viewpointThetaPhi 110 160
+/vis/viewer/zoom 1.2
+
+# 7. CHẠY MÔ PHỎNG (Chia đều 25% cho mỗi loại trong tổng 1000 hạt)
+
+# Nhóm 1: Alpha (250 hạt) - Năng lượng đặc trưng ~5 MeV
+/gun/particle alpha
+/gun/energy 5 MeV
+/run/beamOn 100
+
+# Nhóm 2: Electron/Beta (250 hạt) - Năng lượng ~1 MeV
+/gun/particle e-
+/gun/energy 0.5 MeV
+/run/beamOn 100
+
+# Nhóm 3: Gamma (250 hạt) - Năng lượng ~1.3 MeV (Co-60)
+/gun/particle gamma
+/gun/energy 1.3 MeV
+/run/beamOn 100
+
+# Nhóm 4: Positron (250 hạt) - Năng lượng ~0.5 MeV
+/gun/particle e+
+/gun/energy 0.5 MeV
+/run/beamOn 100
+
+# Cập nhật lại màn 
+hình sau khi bắn xong
+/vis/viewer/flush

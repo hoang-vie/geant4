@@ -10,16 +10,25 @@ class G4Run;
 class RunAction : public G4UserRunAction {
 public:
     RunAction();
-    ~RunAction() override = default;
+    virtual ~RunAction() {}
 
-    void BeginOfRunAction(const G4Run*) override;
-    void EndOfRunAction(const G4Run*) override;
+    virtual void BeginOfRunAction(const G4Run*);
+    virtual void EndOfRunAction(const G4Run*);
 
     void AddInitialParticle(const G4String& type);
     void AddDetectedParticle(const G4String& type);
 
 private:
-    G4Accumulable<G4int> fInitAlpha{0}, fInitBeta{0}, fInitGamma{0}, fInitNeutron{0};
-    G4Accumulable<G4int> fDetAlpha{0}, fDetBeta{0}, fDetGamma{0}, fDetNeutron{0};
+    G4Accumulable<G4int> fInitAlpha = 0;
+    G4Accumulable<G4int> fInitElectron = 0; // Tên phải khớp với file .cc
+    G4Accumulable<G4int> fInitPositron = 0;
+    G4Accumulable<G4int> fInitGamma = 0;
+    G4Accumulable<G4int> fInitNeutron = 0;
+
+    G4Accumulable<G4int> fDetAlpha = 0;
+    G4Accumulable<G4int> fDetElectron = 0; 
+    G4Accumulable<G4int> fDetPositron = 0;
+    G4Accumulable<G4int> fDetGamma = 0;
+    G4Accumulable<G4int> fDetNeutron = 0;
 };
 #endif

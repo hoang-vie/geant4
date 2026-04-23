@@ -1,17 +1,57 @@
-# BẮT BUỘC: Khởi tạo hạt nhân Geant4 (Xây dựng hình học và vật lý) TRƯỚC KHI vẽ
+# ==========================================================
+# 1. KHỞI TẠO HỆ THỐNG
+# ==========================================================
+# Khởi tạo hạt nhân Geant4 (Xây dựng hình học và vật lý)
 /run/initialize
 
+# ==========================================================
+# 2. THIẾT LẬP HIỂN THỊ (Visualization)
+# ==========================================================
 /vis/open OGL
 /vis/drawVolume
 /vis/scene/add/trajectories smooth
 /vis/scene/endOfEventAction accumulate
 
-# Phân màu từng loại hạt
+# Phân màu hạt: Gamma (xanh dương), Beta- (Đỏ), Beta+ (Xanh lá), Alpha (Vàng)
 /vis/modeling/trajectories/create/drawByParticleID
-/vis/modeling/trajectories/drawByParticleID-0/set gamma green
+/vis/modeling/trajectories/drawByParticleID-0/set gamma blue
 /vis/modeling/trajectories/drawByParticleID-0/set e- red
+/vis/modeling/trajectories/drawByParticleID-0/set e+ green
 /vis/modeling/trajectories/drawByParticleID-0/set alpha yellow
-/vis/modeling/trajectories/drawByParticleID-0/set neutron blue
 
+# Ẩn khối World và đặt góc nhìn để quan sát rõ hơn
 /vis/geometry/set/visibility World 0 false
 /vis/viewer/set/viewpointThetaPhi 120 150
+/vis/viewer/zoom 1.5
+
+# ==========================================================
+# 3. THIẾT LẬP THÔNG SỐ THÍ NGHIỆM
+# ==========================================================
+
+# --- Tấm chắn (Shield) ---
+# Đặt vật liệu: G4_Pb, G4_Al, G4_CONCRETE, G4_WATER...
+/shield/setMaterial G4_Al
+
+
+
+# Độ dày tấm chắn (Tâm cố định tại Z = 0)
+/shield/setThickness 3 mm
+/vis/geometry/set/visibility Shield 0 true
+
+# --- Máy dò (Detector) ---
+# Đặt vị trí máy dò trên trục Z (Phải lớn hơn Thickness/2)
+/shield/setDetZ 5 cm
+
+# --- Nguồn phóng xạ (Alpha, Beta, Gamma) ---
+# Cài đặt năng lượng nguồn (MeV) - Áp dụng chung cho cả 3 loại hạt theo code C++
+/shield/setGunEnergy 5 MeV
+
+# Cài đặt vị trí súng (ZPos) 
+# Đặt tại Z âm để hạt bay xuyên qua tâm (0,0,0) tới máy dò
+/shield/setGunZ -2 cm
+
+# ==========================================================
+# 4. CHẠY MÔ PHỎNG
+# =========================================================
+# Bắn hạt (Mô phỏng 100 hạt để thấy rõ sự khác biệt đâm xuyên)
+/run/beamOn 100

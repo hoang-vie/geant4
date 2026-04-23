@@ -1,0 +1,23 @@
+/run/initialize
+
+
+# Cài đặt vật liệu
+/shield/setMaterial G4_Pb # Chì (Pb)
+#/shield/setMaterial G4_Al 
+#/shield/setMaterial G4_CONCRETE
+#/shield/setMaterial G4_POLYETHYLENE
+
+# Cài đặt độ dày tấm vật liệu
+/shield/setThickness 1 cm
+/run/reinitializeGeometry
+
+# Cài đặt vị trí súng
+/shield/setGunZ -5.1 cm
+
+# Cài đặt năng lượng súng 
+/shield/setGunEnergy 200 MeV
+
+/run/printProgress 1000
+/run/beamOn 10000
+
+

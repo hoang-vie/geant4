@@ -1,23 +1,34 @@
+# BẮT BUỘC: Khởi tạo hạt nhân Geant4
 /run/initialize
 
+/vis/open OGL
+/vis/drawVolume
+/vis/scene/add/trajectories smooth
+/vis/scene/endOfEventAction accumulate
 
-# Cài đặt vật liệu
-/shield/setMaterial G4_Pb # Chì (Pb)
-#/shield/setMaterial G4_Al 
-#/shield/setMaterial G4_CONCRETE
-#/shield/setMaterial G4_POLYETHYLENE
+# Phân màu từng loại hạt
+/vis/modeling/trajectories/create/drawByParticleID
+/vis/modeling/trajectories/drawByParticleID-0/set gamma green
+/vis/modeling/trajectories/drawByParticleID-0/set e- red
+/vis/modeling/trajectories/drawByParticleID-0/set alpha yellow
+/vis/modeling/trajectories/drawByParticleID-0/set neutron blue
 
-# Cài đặt độ dày tấm vật liệu
-/shield/setThickness 1 cm
-/run/reinitializeGeometry
+/vis/geometry/set/visibility World 0 false
+/vis/viewer/set/viewpointThetaPhi 120 150
 
-# Cài đặt vị trí súng
+# 2. Đặt nguồn
 /shield/setGunZ -5.1 cm
-
-# Cài đặt năng lượng súng 
 /shield/setGunEnergy 200 MeV
 
+# Cài đặt vật liệu
+/shield/setMaterial G4_AIR 
+
+# Cài đặt độ dày và VỊ TRÍ tấm vật liệu
+/shield/setThickness 1 cm
+/shield/setShieldZ 0 cm  # <--- Câu lệnh mới thêm vào đây
+
+# Cập nhật lại hình học sau khi thay đổi thông số custom
+/run/reinitializeGeometry
+
 /run/printProgress 1000
-/run/beamOn 10000
-
-
+/run/beamOn 100
